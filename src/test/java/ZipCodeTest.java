@@ -21,4 +21,17 @@ public class ZipCodeTest {
         browser.quit();
 
     }
+    @Test
+    public void test2() {
+        WebDriver browser=new ChromeDriver();
+        browser.get("https://www.sharelane.com/cgi-bin/register.py");
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        browser.get("https://www.sharelane.com/cgi-bin/register.py");
+        browser.findElement(By.name("zip_code")).sendKeys("12345");
+        browser.findElement(By.cssSelector("[value=Continue]")).click();
+        String requiredMassage= browser.findElement(By.className("required_text")).getText();
+        Assert.assertEquals(requiredMassage,"*required");
+        browser.quit();
+
+    }
 }
